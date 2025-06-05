@@ -6,11 +6,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 import {
   Form,
@@ -59,11 +60,31 @@ export const SignUpView = () => {
         name: data.name,
         email: data.email,
         password: data.password,
+        callbackURL: "/",
       },
       {
         onSuccess: () => {
           router.push("/");
         },
+        onError: ({ error }) => {
+          setError(error.message);
+          console.log(error);
+        },
+      }
+    );
+    setPending(false);
+  };
+
+  const onSocial = async (provider: "github" | "google") => {
+    setError(null);
+    setPending(true);
+    authClient.signIn.social(
+      {
+        provider: provider,
+        callbackURL: "/",
+      },
+      {
+        onSuccess: () => {},
         onError: ({ error }) => {
           setError(error.message);
           console.log(error);
@@ -159,7 +180,7 @@ export const SignUpView = () => {
                   </Alert>
                 )}
                 <Button type="submit" className="w-full" disabled={pending}>
-                  Sign in
+                  Sign Up
                 </Button>
                 <div
                   className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2
@@ -170,11 +191,23 @@ export const SignUpView = () => {
                   </span>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <Button variant="outline" type="button" className="w-full">
-                    Google
+                  <Button
+                    variant="outline"
+                    type="button"
+                    className="w-full"
+                    onClick={() => onSocial("google")}
+                    title="Google"
+                  >
+                    <FaGoogle />
                   </Button>
-                  <Button variant="outline" type="button" className="w-full">
-                    Github
+                  <Button
+                    variant="outline"
+                    type="button"
+                    className="w-full"
+                    onClick={() => onSocial("github")}
+                    title="Github"
+                  >
+                    <FaGithub />
                   </Button>
                 </div>
                 <div className="text-center text-sm">
@@ -184,7 +217,7 @@ export const SignUpView = () => {
                     className="underline underline-offset-4"
                   >
                     {" "}
-                    Sign in
+                    Sign In
                   </Link>
                 </div>
               </div>
