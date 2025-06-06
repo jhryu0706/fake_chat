@@ -10,7 +10,7 @@ export const HomeView = () => {
   const { data: session } = authClient.useSession();
 
   if (!session) {
-    return <p>Loading....</p>;
+    return <p className="flex flex-col p-4 gap-y-4">Loading....</p>;
   }
 
   return (
