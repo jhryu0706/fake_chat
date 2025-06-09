@@ -35,7 +35,6 @@ export const DashboardUserButton = () => {
   if (isPending || !data?.user) {
     return null;
   }
-  console.log("IR:", data.user.image);
   if (isMobile) {
     return (
       <Drawer>
