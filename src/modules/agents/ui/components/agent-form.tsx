@@ -121,7 +121,7 @@ export const AgentForm = ({
                 <FormControl>
                   <Textarea
                     {...field}
-                    placeholder="You are a historian from the 19th century who can interpret modern day events from a perspective from the past."
+                    placeholder="You are an alien from Mars"
                   />
                 </FormControl>
                 <FormMessage />
