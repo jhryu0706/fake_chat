@@ -100,6 +100,7 @@ export const agentsRouter = createTRPCRouter({
         .orderBy(desc(agents.createdAt), desc(agents.id))
         .limit(pageSize)
         .offset((page-1)* pageSize)
+        
     const [total] = await db
     .select({count: count()})
     .from(agents)
