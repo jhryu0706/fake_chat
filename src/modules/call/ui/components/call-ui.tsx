@@ -13,7 +13,6 @@ export const CallUI = ({ meetingName }: Props) => {
   const [show, setShow] = useState<"lobby" | "call" | "ended">("lobby");
 
   const handleJoin = async () => {
-    console.log("IR: in handlejoin");
     if (!call) return;
 
     await call.join();
