@@ -22,5 +22,6 @@ export const auth = betterAuth({
         schema: {
             ...schema,
         },
-    })
+    }),
+    trustedOrigins: ["http://localhost:3000", "https://explicitly-amused-baboon.ngrok-free.app"]
 });
