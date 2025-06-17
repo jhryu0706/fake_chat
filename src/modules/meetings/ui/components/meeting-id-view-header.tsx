@@ -12,12 +12,7 @@ import {
   DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import {
-  ChevronLeftIcon,
-  MoreVertical,
-  MoreVerticalIcon,
-  TrashIcon,
-} from "lucide-react";
+import { MoreVerticalIcon, TrashIcon } from "lucide-react";
 import Link from "next/link";
 
 interface Props {

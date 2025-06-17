@@ -20,12 +20,7 @@ import {
   DrawerHeader,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import {
-  ChevronDownCircleIcon,
-  ChevronDownIcon,
-  CreditCardIcon,
-  LogOutIcon,
-} from "lucide-react";
+import { ChevronDownIcon, CreditCardIcon, LogOutIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export const DashboardUserButton = () => {

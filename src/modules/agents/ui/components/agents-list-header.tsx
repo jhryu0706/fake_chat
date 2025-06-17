@@ -1,12 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-  ChevronRight,
-  PlusIcon,
-  RotateCcwIcon,
-  XCircleIcon,
-} from "lucide-react";
+import { PlusIcon, RotateCcwIcon } from "lucide-react";
 import { useState } from "react";
 import { NewAgentDialog } from "./new-agent-dialog";
 import { useAgentsFilters } from "../../hooks/use-agents-filters";
