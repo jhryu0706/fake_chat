@@ -1,8 +1,7 @@
 import { useTRPC } from "@/trpc/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/router";
 import { agentsInsertSchema } from "../../schemas";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -15,7 +14,6 @@ import { toast } from "sonner";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -25,7 +23,11 @@ import {
 interface AgentFormProps {
   onSuccess?: () => void;
   onCancel?: () => void;
-  initialValues?: any;
+  initialValues?: {
+    id: string;
+    name?: string;
+    instructions?: string;
+  };
 }
 
 export const AgentForm = ({

@@ -28,7 +28,10 @@ export const protectedProcedure = baseProcedure.use(async ({ctx, next}) => {
   session = await auth.api.getSession({
     headers: await headers(),
   });
-  } catch (error){throw new TRPCError({code:"UNAUTHORIZED", message:"Unauthorized"});}
+  } catch (error){
+    console.error(error)
+    throw new TRPCError({code:"UNAUTHORIZED", message:"Unauthorized"});
+  }
   if (!session) {
     throw new TRPCError({code:"UNAUTHORIZED", message:"Unauthorized"});
   }

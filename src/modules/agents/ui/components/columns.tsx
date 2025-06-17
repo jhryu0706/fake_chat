@@ -3,11 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { AgentsGetMany } from "../../types";
 import { GeneratedAvatar } from "@/components/ui/generate-avatar";
-import {
-  CornerDownRightIcon,
-  CornerRightDownIcon,
-  VideoIcon,
-} from "lucide-react";
+import { CornerDownRightIcon, VideoIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export const columns: ColumnDef<AgentsGetMany[number]>[] = [
@@ -26,7 +22,7 @@ export const columns: ColumnDef<AgentsGetMany[number]>[] = [
         </div>
         <div className="flex items-center gap-x-2">
           <CornerDownRightIcon className="size-3 text-muted-foreground" />
-          <span className="text-sm text-muted-foreground max-w-[200px] truncate capitalize">
+          <span className="text-sm text-muted-foreground max-w-[400px] truncate">
             {row.original.instructions}
           </span>
         </div>

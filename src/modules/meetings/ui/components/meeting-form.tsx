@@ -1,10 +1,8 @@
 import { useTRPC } from "@/trpc/client";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { MeetingGetOne } from "../../types";
 import { meetingsInsertSchema } from "../../schemas";
 
 import { GeneratedAvatar } from "@/components/ui/generate-avatar";
@@ -29,7 +27,11 @@ import { NewAgentDialog } from "@/modules/agents/ui/components/new-agent-dialog"
 interface MeetingFormProps {
   onSuccess?: (id?: string) => void;
   onCancel?: () => void;
-  initialValues?: any;
+  initialValues?: {
+    id: string;
+    agentId: string;
+    name: string;
+  };
 }
 
 export const MeetingForm = ({

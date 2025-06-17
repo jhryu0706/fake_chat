@@ -3,7 +3,7 @@ import { agents, meetings } from "@/db/schema";
 import { inngest } from "@/inngest/client";
 import { streamVideo } from "@/lib/stream-video";
 import { CallSessionStartedEvent, CallSessionParticipantLeftEvent, CallEndedEvent, CallTranscriptionReadyEvent, CallRecordingReadyEvent } from "@stream-io/node-sdk";
-import { and, eq, not } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
 function verifySignatureWithSDK(body:string, signature: string): boolean {

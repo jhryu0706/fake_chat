@@ -10,7 +10,6 @@ import {
   useSuspenseQuery,
 } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 import { useConfirm } from "@/hooks/use-confirm";
 import { useState } from "react";
 
@@ -85,13 +84,7 @@ export const MeetingIdView = ({ meetingId }: Props) => {
 
         {isCancelled && <CancelledState />}
         {isActive && <ActiveState meetingId={meetingId} />}
-        {isUpcoming && (
-          <UpcomingState
-            meetingId={meetingId}
-            onCancelMeeting={() => {}}
-            isCancelling={false}
-          />
-        )}
+        {isUpcoming && <UpcomingState meetingId={meetingId} />}
         {isCompleted && <CompletedState data={data} />}
         {isProcessing && <ProcessingState />}
       </div>
