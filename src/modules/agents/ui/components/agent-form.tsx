@@ -23,7 +23,7 @@ import {
 interface AgentFormProps {
   onSuccess?: () => void;
   onCancel?: () => void;
-  initialValues: {
+  initialValues?: {
     id: string;
     name?: string;
     instructions?: string;
