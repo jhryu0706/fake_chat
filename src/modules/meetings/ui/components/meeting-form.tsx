@@ -32,12 +32,14 @@ interface MeetingFormProps {
     agentId: string;
     name: string;
   };
+  defaultAgentId?: string;
 }
 
 export const MeetingForm = ({
   onSuccess,
   onCancel,
   initialValues,
+  defaultAgentId,
 }: MeetingFormProps) => {
   const trpc = useTRPC();
   const queryClient = useQueryClient();
@@ -56,13 +58,10 @@ export const MeetingForm = ({
     trpc.meetings.create.mutationOptions({
       onSuccess: async (data) => {
         queryClient.invalidateQueries(trpc.meetings.getMany.queryOptions({}));
-
-        // TODO: invalidate free tier usage
         onSuccess?.(data.id);
       },
       onError: (error) => {
         toast.error(error.message);
-        // TODO: Check if error code "FORBIDDEN", redirect to /upgrade
       },
     })
   );
@@ -89,12 +88,13 @@ export const MeetingForm = ({
     resolver: zodResolver(meetingsInsertSchema),
     defaultValues: {
       name: initialValues?.name ?? "",
-      agentId: initialValues?.agentId ?? "",
+      agentId: initialValues?.agentId ?? defaultAgentId ?? "",
     },
   });
 
   const isEdit = !!initialValues?.id;
   const isPending = createMeeting.isPending || updateMeeting.isPending;
+  const isFromAgentPage = !!defaultAgentId;
 
   const onSubmit = (values: z.infer<typeof meetingsInsertSchema>) => {
     if (isEdit) {
@@ -122,7 +122,7 @@ export const MeetingForm = ({
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder="Questions on the 18th century"
+                      placeholder="Briefly describe meeting details"
                     />
                   </FormControl>
                   <FormMessage />
@@ -130,50 +130,63 @@ export const MeetingForm = ({
               </>
             )}
           />
-          <FormField
-            name="agentId"
-            control={form.control}
-            render={({ field }) => (
-              <>
-                <FormItem>
-                  <FormLabel> Agent</FormLabel>
-                  <FormControl>
-                    <CommandSelect
-                      options={(agents.data?.items ?? []).map((agent) => ({
-                        id: agent.id,
-                        value: agent.id,
-                        children: (
-                          <div className="flex items-center gap-x-2">
-                            <GeneratedAvatar
-                              seed={agent.name}
-                              variant="botttsNeutral"
-                              className="border size-6"
-                            />
-                            <span>{agent.name}</span>
-                          </div>
-                        ),
-                      }))}
-                      onSelect={field.onChange}
-                      onSearch={setAgentSearch}
-                      value={field.value}
-                      placeholder="Select an Agent"
-                    />
-                  </FormControl>
-                  <FormDescription>
-                    Not found what you&apos;re looking for?{" "}
-                    <button
-                      type="button"
-                      className="text-primary hover:underline"
-                      onClick={() => setOpenNewAgentDialog(true)}
-                    >
-                      Create new agent
-                    </button>
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              </>
-            )}
-          />
+          {isFromAgentPage ? (
+            <FormItem>
+              <FormLabel>Agent</FormLabel>
+              <FormControl>
+                <div className="px-3 py-2 border rounded bg-muted text-muted-foreground">
+                  {agents.data?.items.find(
+                    (agent) => agent.id === defaultAgentId
+                  )?.name ?? "Loading..."}
+                </div>
+              </FormControl>
+            </FormItem>
+          ) : (
+            <FormField
+              name="agentId"
+              control={form.control}
+              render={({ field }) => (
+                <>
+                  <FormItem>
+                    <FormLabel> Agent</FormLabel>
+                    <FormControl>
+                      <CommandSelect
+                        options={(agents.data?.items ?? []).map((agent) => ({
+                          id: agent.id,
+                          value: agent.id,
+                          children: (
+                            <div className="flex items-center gap-x-2">
+                              <GeneratedAvatar
+                                seed={agent.name}
+                                variant="botttsNeutral"
+                                className="border size-6"
+                              />
+                              <span>{agent.name}</span>
+                            </div>
+                          ),
+                        }))}
+                        onSelect={field.onChange}
+                        onSearch={setAgentSearch}
+                        value={field.value}
+                        placeholder="Select an Agent"
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      Not found what you&apos;re looking for?{" "}
+                      <button
+                        type="button"
+                        className="text-primary hover:underline"
+                        onClick={() => setOpenNewAgentDialog(true)}
+                      >
+                        Create new agent
+                      </button>
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                </>
+              )}
+            />
+          )}
           <div className="flex justify-between gap-x-2">
             {onCancel && (
               <Button
