@@ -35,25 +35,11 @@ export const CompletedState = ({ data }: Props) => {
                 Summary
               </TabsTrigger>
               <TabsTrigger
-                value="transcript"
-                className="text-muted-foreground rounded-none bg-background data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-b-primary data-[state=active]:text-accent-foreground h-full hover:text-accent-foreground"
-              >
-                <FileTextIcon />
-                Transcript
-              </TabsTrigger>
-              <TabsTrigger
                 value="recording"
                 className="text-muted-foreground rounded-none bg-background data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-b-primary data-[state=active]:text-accent-foreground h-full hover:text-accent-foreground"
               >
                 <FileVideoIcon />
                 Recording
-              </TabsTrigger>
-              <TabsTrigger
-                value="ask_ai"
-                className="text-muted-foreground rounded-none bg-background data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-b-primary data-[state=active]:text-accent-foreground h-full hover:text-accent-foreground"
-              >
-                <SparklesIcon />
-                Ask AI
               </TabsTrigger>
             </TabsList>
             <ScrollBar orientation="horizontal" />

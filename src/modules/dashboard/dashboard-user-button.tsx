@@ -8,7 +8,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -58,10 +57,6 @@ export const DashboardUserButton = () => {
           </DrawerHeader>
           <DrawerFooter>
             <Button variant="outline" onClick={() => {}}>
-              <CreditCardIcon className="size-4 text-black" />
-              Billing
-            </Button>
-            <Button variant="outline" onClick={() => {}}>
               <LogOutIcon className="size-4 text-black" />
               Logout
             </Button>
@@ -110,11 +105,6 @@ export const DashboardUserButton = () => {
             </span>
           </div>
         </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer flex items-center justify-between">
-          Billing
-          <CreditCardIcon className="size-4" />
-        </DropdownMenuItem>
         <DropdownMenuItem
           onClick={onLogout}
           className="cursor-pointer flex items-center justify-between"
