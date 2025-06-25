@@ -1,6 +1,4 @@
 import { CallControls, SpeakerLayout } from "@stream-io/video-react-sdk";
-import Image from "next/image";
-import Link from "next/link";
 
 interface Props {
   onLeave: () => void;

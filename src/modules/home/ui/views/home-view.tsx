@@ -41,8 +41,8 @@ export default function HomeView() {
                 You are a student getting ready for a debate competition. You
                 can create your own debate coach with a prompt like:
                 <blockquote className="pl-4 border-l-4 border-gray-300 italic mt-1">
-                  "You are a debate coach, give me feedback on timing,
-                  composure, tone, and content."
+                  &quot;You are a debate coach, give me feedback on timing,
+                  composure, tone, and content.&quot;
                 </blockquote>
               </li>
               <li>

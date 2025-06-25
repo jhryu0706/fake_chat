@@ -5,7 +5,6 @@ import {
   StreamCall,
   StreamVideo,
   StreamVideoClient,
-  StreamTheme,
 } from "@stream-io/video-react-sdk";
 
 import "@stream-io/video-react-sdk/dist/css/styles.css";
