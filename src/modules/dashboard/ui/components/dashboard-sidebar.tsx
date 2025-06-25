@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import { Separator } from "@radix-ui/react-context-menu";
-import { BotIcon, StarIcon, VideoIcon } from "lucide-react";
+import { BotIcon, VideoIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
