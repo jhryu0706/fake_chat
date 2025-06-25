@@ -53,11 +53,13 @@ export const CallLobby = ({ onJoin }: Props) => {
   const hasBrowserMediaPermission = hasCameraPermission && hasMicPermission;
 
   return (
-    <div className="flex flex-col items-center justify-center h-full bg-radial from-sidebar-accent to-sidebar">
+    <div className="flex flex-col items-center justify-center h-full bg-muted">
       <div className="py-4 px-8 flex flex-1 items-center justify-center">
-        <div className="flex flex-col items-center justify-center gap-y-6 bg-background rounded-lg p-10 shadow-sm">
-          <h6 className="text-lg font-medium">Ready to join?</h6>
-          <p className="text-sm">Set up your call before joining</p>
+        <div className="flex flex-col items-center justify-center gap-y-6 bg-[#aed7c098] text-[#2D3748] rounded-lg p-10 shadow-md">
+          <h6 className="text-lg font-medium">
+            When you join, make sure to{" "}
+            <strong>speak first to trigger agent</strong>.
+          </h6>
           <VideoPreview
             DisabledVideoPreview={
               hasBrowserMediaPermission

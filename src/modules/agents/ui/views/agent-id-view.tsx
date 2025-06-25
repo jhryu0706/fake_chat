@@ -12,11 +12,13 @@ import {
 import { AgentIdViewHeader } from "../components/agent-id-view-header";
 import { GeneratedAvatar } from "@/components/ui/generate-avatar";
 import { Badge } from "@/components/ui/badge";
-import { VideoIcon } from "lucide-react";
+import { PlusIcon, VideoIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useConfirm } from "@/hooks/use-confirm";
 import { UpdateAgentDialog } from "../components/update-agent-dialog";
+import { MeetingFromAgentDialog } from "@/modules/meetings/ui/components/create-meeting-from-agent-dialog";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   agentId: string;
@@ -28,6 +30,8 @@ export const AgentIdView = ({ agentId }: Props) => {
   const queryClient = useQueryClient();
 
   const [updateAgentDialogOpen, setUpdateAgentDialogOpen] = useState(false);
+  const [isMeetingFromAgentDialogOpen, setMeetingFromAgentDialogOpen] =
+    useState(false);
 
   const removeAgent = useMutation(
     trpc.agents.remove.mutationOptions({
@@ -76,13 +80,26 @@ export const AgentIdView = ({ agentId }: Props) => {
         />
         <div className="bg-white rounded-lg border">
           <div className="px-4 py-5 gap-y-5 flex flex-col col-span-5">
-            <div className="flex items-center gap-x-3">
-              <GeneratedAvatar
-                variant="botttsNeutral"
-                seed={data.name}
-                className="size-10"
-              />
-              <h2 className="text-2xl font-medium">{data.name}</h2>
+            <MeetingFromAgentDialog
+              open={isMeetingFromAgentDialogOpen}
+              onOpenChange={setMeetingFromAgentDialogOpen}
+              defaultAgent={{ id: agentId, name: data.name }}
+            />
+            <div className="flex justify-between">
+              <div className="flex items-center gap-x-3">
+                <GeneratedAvatar
+                  variant="botttsNeutral"
+                  seed={data.name}
+                  className="size-10"
+                />
+                <h2 className="text-2xl font-medium">{data.name}</h2>
+              </div>
+              <div className="flex items-center justify-between">
+                <Button onClick={() => setMeetingFromAgentDialogOpen(true)}>
+                  <PlusIcon />
+                  New Meeting
+                </Button>
+              </div>
             </div>
             <Badge
               variant="outline"

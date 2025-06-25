@@ -8,7 +8,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -20,7 +19,7 @@ import {
   DrawerHeader,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { ChevronDownIcon, CreditCardIcon, LogOutIcon } from "lucide-react";
+import { ChevronDownIcon, LogOutIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export const DashboardUserButton = () => {
@@ -57,10 +56,6 @@ export const DashboardUserButton = () => {
             <DrawerDescription>{data.user.email}</DrawerDescription>
           </DrawerHeader>
           <DrawerFooter>
-            <Button variant="outline" onClick={() => {}}>
-              <CreditCardIcon className="size-4 text-black" />
-              Billing
-            </Button>
             <Button variant="outline" onClick={() => {}}>
               <LogOutIcon className="size-4 text-black" />
               Logout
@@ -110,11 +105,6 @@ export const DashboardUserButton = () => {
             </span>
           </div>
         </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer flex items-center justify-between">
-          Billing
-          <CreditCardIcon className="size-4" />
-        </DropdownMenuItem>
         <DropdownMenuItem
           onClick={onLogout}
           className="cursor-pointer flex items-center justify-between"

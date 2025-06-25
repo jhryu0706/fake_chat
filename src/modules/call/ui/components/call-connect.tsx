@@ -74,8 +74,8 @@ export const CallConnect = ({
 
   if (!client || !call) {
     return (
-      <div className="flex h-screen items-center justify-center bg-radial from-sidebar-accent to-sidebar">
-        <LoaderIcon className="size-6 animate-spin text-white" />
+      <div className="flex h-screen items-center justify-center bg-white">
+        <LoaderIcon className="w-24 h-24 animate-spin text-black" />
       </div>
     );
   }
