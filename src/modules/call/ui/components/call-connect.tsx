@@ -5,6 +5,7 @@ import {
   StreamCall,
   StreamVideo,
   StreamVideoClient,
+  StreamTheme,
 } from "@stream-io/video-react-sdk";
 
 import "@stream-io/video-react-sdk/dist/css/styles.css";
@@ -74,7 +75,7 @@ export const CallConnect = ({
 
   if (!client || !call) {
     return (
-      <div className="flex h-screen items-center justify-center bg-muted">
+      <div className="flex h-screen items-center justify-center bg-white">
         <LoaderIcon className="w-24 h-24 animate-spin text-black" />
       </div>
     );
